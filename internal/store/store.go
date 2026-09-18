@@ -1,4 +1,5 @@
-package main
+// Package store provides a thread-safe in-memory store for short codes.
+package store
 
 import "sync"
 
@@ -8,7 +9,7 @@ type Store struct {
 	hits map[string]int    // code -> hit count
 }
 
-func NewStore() *Store {
+func New() *Store {
 	return &Store{
 		data: make(map[string]string),
 		hits: make(map[string]int),

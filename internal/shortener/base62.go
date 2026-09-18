@@ -1,10 +1,11 @@
-package main
+// Package shortener encodes IDs into short Base62 codes.
+package shortener
 
 import "strings"
 
 const base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-func toBase62(n int) string {
+func ToBase62(n int) string {
 	if n == 0 {
 		return string(base62Chars[0])
 	}
