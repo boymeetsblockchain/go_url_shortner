@@ -17,6 +17,15 @@ type Handler struct {
 	baseURL string
 }
 
+type shortenRequest struct {
+	URL string `json:"url"`
+}
+
+type shortenResponse struct {
+	Code     string `json:"code"`
+	ShortURL string `json:"short_url"`
+}
+
 func NewHandler(s *store.Store, baseURL string) *Handler {
 	return &Handler{store: s, baseURL: baseURL}
 }
@@ -26,15 +35,6 @@ func (h *Handler) Routes() *http.ServeMux {
 	mux.HandleFunc("POST /shorten", h.shorten)
 	mux.HandleFunc("GET /{code}", h.redirect)
 	return mux
-}
-
-type shortenRequest struct {
-	URL string `json:"url"`
-}
-
-type shortenResponse struct {
-	Code     string `json:"code"`
-	ShortURL string `json:"short_url"`
 }
 
 func (h *Handler) shorten(w http.ResponseWriter, r *http.Request) {
